@@ -26,13 +26,13 @@ fi
 sudo adduser deployer --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
 usermod -aG docker deployer
 
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
+mkdir -p /home/deployer/.ssh
+chmod 700 /home/deployer/.ssh
 ssh-keygen -t rsa -N '' -f /home/deployer/.ssh/id_rsa
 ssh-keygen -Hf /home/deployer/.ssh/known_hosts
 cat /home/deployer/.ssh/id_rsa.pub >> /home/deployer/.ssh/known_hosts
-chmod 644 ~/.ssh/known_hosts
-hown -R deployer:deployer /home/deployer/.ssh
+chmod 644 /home/deployer/.ssh/known_hosts
+chown -R deployer:deployer /home/deployer/.ssh
 
 docker --version
 docker-compose --version
